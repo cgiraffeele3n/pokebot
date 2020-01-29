@@ -1,5 +1,6 @@
 import discord
 import random
+import os
 
 from lib import csvwrapper
 
