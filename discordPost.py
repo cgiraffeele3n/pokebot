@@ -4,7 +4,7 @@ import os
 from lib import csvwrapper
 
 # トークン
-TOKEN = os.environ['DISCORD_BOT_TOKEN']
+TOKEN = "NjY4Nzg5NjUxODM3OTQzODM3.XjGgHg.BDakI1gskOcUEDbMG9458OTIttU"
 
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
