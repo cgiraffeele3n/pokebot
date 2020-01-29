@@ -1,1 +1,1 @@
-bot : python discordPost.py
+discordbot: python discordPost.py
