@@ -4,8 +4,7 @@ import random
 from lib import csvwrapper
 
 # 自分のBotのアクセストークンに置き換えてください
-TOKEN = 'NjY4Nzg5NjUxODM3OTQzODM3.XjGOEw.YRftVyMGs76Y-DCZ8uAH-ASr0Sg'
-
+TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
