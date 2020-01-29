@@ -1,10 +1,9 @@
 import discord
 import random
 import os
-
 from lib import csvwrapper
 
-# 自分のBotのアクセストークンに置き換えてください
+# トークン
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 # 接続に必要なオブジェクトを生成
