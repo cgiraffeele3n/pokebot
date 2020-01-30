@@ -1,10 +1,11 @@
+# インストールした discord.py を読み込む
 import discord
 import random
 import os
 from lib import csvwrapper
 
-# トークン
-TOKEN = os.environ['DISCORD_BOT_TOKEN']
+# 自分のBotのアクセストークンに置き換えてください
+TOKEN = 'NjcyMDI3OTE4NzU0NTEyODk2.XjLEaQ.pk_FOYmDs0EicrFKbkOHVsit0oU'
 
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
@@ -20,7 +21,6 @@ readcsv = csv.readCsv(getCsv)
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
     print('ログインしました')
-    print('stop to ctrl + z')
 
 # メッセージ受信時に動作する処理
 @client.event
@@ -38,6 +38,7 @@ async def on_message(message):
     if message.content == "/pass":
         await message.channel.send(str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)))
 
+    # $[ポケモン名]と一致する種族値を返す
     if message.content.startswith("$?", 0):
         for row in readcsv:
             if message.content.lstrip("$?") in row[0]:
