@@ -41,7 +41,7 @@ async def on_message(message):
     # $[ポケモン名]と一致する種族値を返す
     for row in readcsv:
         if message.content == "$" + row[0]:
-            await message.channel.send(row[1] + "-" + row[2] + "-" + row[3] + "-" + row[4] + "-" + row[5] + "-" + row[6] + ":" + row[7])
+            await message.channel.send(row[0] + ":" + row[1] + "-" + row[2] + "-" + row[3] + "-" + row[4] + "-" + row[5] + "-" + row[6])
             return
 
 # Botの起動とDiscordサーバーへの接続
