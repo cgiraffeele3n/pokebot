@@ -62,10 +62,10 @@ async def on_message(message):
         for row in readcsv:
             if message.content == "$S" + row[0]:
                 await message.channel.send(row[0] + "の素早さは")
-                await message.channel.send("個体値0、性格補正0.9:" + status.kotaichiZero(int(row[6])))
-                await message.channel.send("個体値31:" + status.mufuri(int(row[6])))
-                await message.channel.send("個体値31、努力値252、性格補正1.0:" + status.muhosei(int(row[6])))
-                await message.channel.send("個体値31、努力値252、性格補正1.1:" + status.hosei(int(row[6])))
+                await message.channel.send(status.kotaichiZero(int(row[6])) + "（個体値0、下降補正）")
+                await message.channel.send(status.mufuri(int(row[6])) + "（個体値31、無補正）")
+                await message.channel.send(status.muhosei(int(row[6])) + "（個体値31、努力値252、無補正）")
+                await message.channel.send(status.hosei(int(row[6]))　+ "（個体値31、努力値252、上方補正）" )
 
 # Botの起動とDiscordサーバーへの接続
 client.run(TOKEN)
