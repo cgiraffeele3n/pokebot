@@ -65,7 +65,7 @@ async def on_message(message):
                 await message.channel.send(status.kotaichiZero(int(row[6])) + "（個体値0、下降補正）")
                 await message.channel.send(status.mufuri(int(row[6])) + "（個体値31、無補正）")
                 await message.channel.send(status.muhosei(int(row[6])) + "（個体値31、努力値252、無補正）")
-                await message.channel.send(status.hosei(int(row[6]))　+ "（個体値31、努力値252、上方補正）" )
+                await message.channel.send(status.hosei(int(row[6]))　+ "（個体値31、努力値252、上方補正）")
 
 # Botの起動とDiscordサーバーへの接続
 client.run(TOKEN)
