@@ -63,6 +63,7 @@ async def on_message(message):
         for row in readcsv:
             if message.content == "$S" + row[0]:
                 await message.channel.send(row[0] + "の素早さは")
+                await message.channel.send("個体値０:" + status.kotaichiZero(int(row[6])))
                 await message.channel.send("無振り:" + status.mufuri(int(row[6])))
                 await message.channel.send("無補正:" + status.muhosei(int(row[6])))
                 await message.channel.send("補正:" + status.hosei(int(row[6])))
