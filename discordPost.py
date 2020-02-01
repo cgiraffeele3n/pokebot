@@ -26,7 +26,6 @@ readcsv = csv.readCsv(getCsv)
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
     print('ログインしました')
-    print('stop to ctrl + z')
 
 # メッセージ受信時に動作する処理
 @client.event
@@ -40,7 +39,7 @@ async def on_message(message):
         await message.channel.send("$:ポケモンを完全一致で検索し該当する種族値を表示")
         await message.channel.send("$?:ポケモンを部分一致で検索し該当する種族値をすべて表示")
         await message.channel.send("$S:ポケモンの素早さを無振り、無補正、補正で表示")
-        await message.channel.send("/passでランダムなパスワードの生成")
+        await message.channel.send("/pass:[0-9]の４ケタのランダムなパスワードの生成")
 
     # ランダムパスワード生成
     if message.content == "/pass":
@@ -63,9 +62,10 @@ async def on_message(message):
         for row in readcsv:
             if message.content == "$S" + row[0]:
                 await message.channel.send(row[0] + "の素早さは")
-                await message.channel.send("個体値０:" + status.kotaichiZero(int(row[6])))
-                await message.channel.send("無振り:" + status.mufuri(int(row[6])))
-                await message.channel.send("無補正:" + status.muhosei(int(row[6])))
-                await message.channel.send("補正:" + status.hosei(int(row[6])))
+                await message.channel.send("個体値0、性格補正0.9:" + status.kotaichiZero(int(row[6])))
+                await message.channel.send("個体値31:" + status.mufuri(int(row[6])))
+                await message.channel.send("個体値31、努力値252、性格補正1.0:" + status.muhosei(int(row[6])))
+                await message.channel.send("個体値31、努力値252、性格補正1.1:" + status.hosei(int(row[6])))
+
 # Botの起動とDiscordサーバーへの接続
 client.run(TOKEN)

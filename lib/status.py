@@ -5,11 +5,12 @@ class Status:
 
     """
     個体値31
+    正確補正0.9
     のステータスを返す
     """
 
     def kotaichiZero(self, syuzokuchi):
-        return str(math.floor(((syuzokuchi*2) * 50/100 + 5) * 1.0))
+        return str(math.floor(((syuzokuchi*2) * 50/100 + 5) * 0.9))
 
     """
     個体値31
