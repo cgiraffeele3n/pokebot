@@ -35,14 +35,14 @@ async def on_message(message):
         return
 
      # マニュアルの表示
-    if message.content == "/help":
+    if message.content == "¥help":
         await message.channel.send("$:ポケモンを完全一致で検索し該当する種族値を表示")
         await message.channel.send("$?:ポケモンを部分一致で検索し該当する種族値をすべて表示")
         await message.channel.send("$S:ポケモンの素早さを無振り、無補正、補正で表示")
-        await message.channel.send("/pass:[0-9]の４ケタのランダムなパスワードの生成")
+        await message.channel.send("¥pass:[0-9]の４ケタのランダムなパスワードの生成")
 
     # ランダムパスワード生成
-    if message.content == "/pass":
+    if message.content == "¥pass":
         await message.channel.send(str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)))
 
     # $[ポケモン名]と一致する種族値を返す(部分一致)
