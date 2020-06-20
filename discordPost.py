@@ -48,7 +48,7 @@ async def on_message(message):
 
     # ¥uu[アイテム]と一致するウッウロボのレシピを返す（完全一致）
     if message.content.startswith("¥uu", 0):
-        for row in readStatusCsv:
+        for row in readUuCsv:
             if message.content == "¥uu" + row[0]:
                 await message.channel.send("[" + row[1] + ":" + row[2] + ":" + row[3] + ":" + row[4] + "]" + "->" + row[0])
 
