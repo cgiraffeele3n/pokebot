@@ -10,7 +10,9 @@ TOKEN = os.environ['DISCORD_BOT_TOKEN']
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
 
-getCsv = './csv/poke.csv'
+statusCsv = './csv/poke.csv'
+
+uuCsv = './csv/uu.csv'
 
 # CsvWrapperインスタンス
 csv = csvwrapper.CsvWrapper()
@@ -19,7 +21,10 @@ csv = csvwrapper.CsvWrapper()
 status = status.Status()
 
 # ステータスcsvファイルの読み込み
-readcsv = csv.readCsv(getCsv)
+readStatusCsv = csv.readCsv(statusCsv)
+
+# ウッウロボcsvファイルの読み込み
+readUuCsv = csv.readCsv(uuCsv)
 
 # 起動時に動作する処理
 @client.event
@@ -39,27 +44,29 @@ async def on_message(message):
         await message.channel.send("$:ポケモンを完全一致で検索し該当する種族値を表示")
         await message.channel.send("$?:ポケモンを部分一致で検索し該当する種族値をすべて表示")
         await message.channel.send("$S:ポケモンの素早さを無振り、無補正、補正で表示")
-        await message.channel.send("¥pass:[0-9]の４ケタのランダムなパスワードの生成")
+        await message.channel.send("¥uu:ウッウロボのレシピを表示")
 
-    # ランダムパスワード生成
-    if message.content == "¥pass":
-        await message.channel.send(str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)) + str(random.randint(0, 9)))
+    # ¥uu[アイテム]と一致するウッウロボのレシピを返す（完全一致）
+    if message.content.startswith("¥uu", 0):
+        for row in readStatusCsv:
+            if message.content == "¥uu" + row[0]:
+                await message.channel.send("[" + row[1] + ":" + row[2] + ":" + row[3] + ":" + row[4] + "]" + "->" + row[0])
 
-    # $[ポケモン名]と一致する種族値を返す(部分一致)
+    # $?[ポケモン名]と一致する種族値を返す(部分一致)
     if message.content.startswith("$?", 0):
-        for row in readcsv:
+        for row in readStatusCsv:
             if message.content.lstrip("$?") in row[0]:
                 await message.channel.send(row[0] + ":" + row[1] + "-" + row[2] + "-" + row[3] + "-" + row[4] + "-" + row[5] + "-" + row[6])
 
     # $[ポケモン名]と一致する種族値を返す(完全一致)
     if message.content.startswith("$", 0):
-        for row in readcsv:
+        for row in readStatusCsv:
             if message.content == "$" + row[0]:
                 await message.channel.send(row[0] + ":" + row[1] + "-" + row[2] + "-" + row[3] + "-" + row[4] + "-" + row[5] + "-" + row[6])
 
-    # $[ポケモン名]と一致する素早さステータスを返す
+    # $S[ポケモン名]と一致する素早さステータスを返す
     if message.content.startswith("$S", 0):
-        for row in readcsv:
+        for row in readStatusCsv:
             if message.content == "$S" + row[0]:
                 intRow = int(row[6])
                 await message.channel.send(row[0] + "の素早さは")
